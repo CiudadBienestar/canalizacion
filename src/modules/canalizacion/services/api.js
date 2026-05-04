@@ -4,7 +4,7 @@ export const enviarFormulario = async (data) => {
   const payload = {
     ...data,
     grupo_poblacional: (data.grupo_poblacional || []).join(", "),
-    entorno: (data.entorno || []).join(", "),
+    entorno_actividad: (data.entorno || []).join(", "),
     sectores: (data.sectores || []).join(", "),
     subsectores: (data.subsectores || []).join(", "),
     acciones: (data.acciones || []).join(", "),
@@ -13,7 +13,6 @@ export const enviarFormulario = async (data) => {
   await fetch(SCRIPT_URL, {
     method: "POST",
     mode: "no-cors",
-    redirect: "follow",
     headers: {
       "Content-Type": "text/plain;charset=utf-8",
     },
