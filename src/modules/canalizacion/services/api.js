@@ -19,4 +19,4 @@ export const enviarFormulario = async (data) => {
     },
     body: JSON.stringify(payload),
   });
-};n
+};
