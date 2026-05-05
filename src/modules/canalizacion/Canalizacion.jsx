@@ -221,7 +221,7 @@ export default function Canalizacion() {
   const [mismoSolicitante, setMismoSolicitante] = useState(false);
 
   const [form, setForm] = useState({
-    fecha: new Date().toISOString().split("T")[0],
+    fecha: "",
     tipo_documento: "",
     numero_documento: "",
     nombres: "",
@@ -234,7 +234,7 @@ export default function Canalizacion() {
     beneficiario_telefono: "",
 
     grupo_poblacional: [],
-    curso_vida: "",
+    curso_vida: "", // Cambiado de [] a "" para selección única
     entorno: [],
 
     eps: "",
@@ -265,6 +265,7 @@ export default function Canalizacion() {
     });
   };
 
+  // Efecto para copiar datos cuando cambia el checkbox o cambian los datos del solicitante
   useEffect(() => {
     if (mismoSolicitante) {
       set("beneficiario_nombre", `${form.nombres} ${form.apellidos}`.trim());
@@ -280,7 +281,7 @@ export default function Canalizacion() {
     }
   };
 
-  
+  // Cuando se marca el checkbox, se copian los datos
   const handleMismoSolicitanteChange = (checked) => {
     setMismoSolicitante(checked);
     if (checked) {
@@ -289,7 +290,7 @@ export default function Canalizacion() {
     }
   };
 
-
+  // Cuando se desmarca un sector, limpiar sus subsectores
   const toggleSector = (sector) => {
     setForm((f) => {
       const sectores = f.sectores.includes(sector)
@@ -884,7 +885,7 @@ export default function Canalizacion() {
                       accion_otra: "",
                       responsable: "",
                       telefono_responsable: "",
-                      fecha: new Date().toISOString().split("T")[0],
+                      fecha: "",
                     }));
                   }}
                   className="px-8 py-3 text-base font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"
