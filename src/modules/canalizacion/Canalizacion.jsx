@@ -234,7 +234,7 @@ export default function Canalizacion() {
     beneficiario_telefono: "",
 
     grupo_poblacional: [],
-    curso_vida: "", // Cambiado de [] a "" para selección única
+    curso_vida: "",
     entorno: [],
 
     eps: "",
@@ -265,7 +265,6 @@ export default function Canalizacion() {
     });
   };
 
-  // Efecto para copiar datos cuando cambia el checkbox o cambian los datos del solicitante
   useEffect(() => {
     if (mismoSolicitante) {
       set("beneficiario_nombre", `${form.nombres} ${form.apellidos}`.trim());
@@ -281,7 +280,7 @@ export default function Canalizacion() {
     }
   };
 
-  // Cuando se marca el checkbox, se copian los datos
+  
   const handleMismoSolicitanteChange = (checked) => {
     setMismoSolicitante(checked);
     if (checked) {
@@ -290,7 +289,7 @@ export default function Canalizacion() {
     }
   };
 
-  // Cuando se desmarca un sector, limpiar sus subsectores
+
   const toggleSector = (sector) => {
     setForm((f) => {
       const sectores = f.sectores.includes(sector)
