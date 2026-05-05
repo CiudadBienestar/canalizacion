@@ -2,46 +2,45 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybsQt-g22sd1-90Bycw
 
 export const enviarFormulario = async (data) => {
   const payload = {
-    tipo_documento:       data.tipo_documento,
-    numero_documento:     data.numero_documento,
-    nombres:              data.nombres,
-    apellidos:            data.apellidos,
-    barrio:               data.barrio,
-    direccion:            data.direccion,
-    telefono:             data.telefono,
-    correo:               data.correo,
-
-    beneficiario_nombre:    data.beneficiario_nombre,
-    beneficiario_telefono:  data.beneficiario_telefono,
+    ...data,
 
     // Arrays → string
-    grupo_poblacional:    (data.grupo_poblacional || []).join(", "),
-    curso_vida:           data.curso_vida,
+    grupo_poblacional: Array.isArray(data.grupo_poblacional)
+      ? data.grupo_poblacional.join(", ")
+      : (data.grupo_poblacional || ""),
 
-    // ✅ Bug corregido: el estado usa "entorno", el GAS espera "entorno_actividad"
-    entorno_actividad:    (data.entorno || []).join(", "),
+    sectores: Array.isArray(data.sectores)
+      ? data.sectores.join(", ")
+      : (data.sectores || ""),
 
-    eps:                  data.eps,
-    ips:                  data.ips,
+    subsectores: Array.isArray(data.subsectores)
+      ? data.subsectores.join(", ")
+      : (data.subsectores || ""),
 
-    // ✅ Bug corregido: el estado usa "descripcion", el GAS espera "descripcion_solicitud"
-    descripcion_solicitud: data.descripcion,
+    acciones: Array.isArray(data.acciones)
+      ? data.acciones.join(", ")
+      : (data.acciones || ""),
 
-    sectores:             (data.sectores || []).join(", "),
-    subsectores:          (data.subsectores || []).join(", "),
-    sector_otro:          data.sector_otro,
-    acciones:             (data.acciones || []).join(", "),
-    accion_otra:          data.accion_otra,
+    // 🔥 CORREGIDO: entorno
+    entorno_actividad: Array.isArray(data.entorno_actividad)
+      ? data.entorno_actividad.join(", ")
+      : (data.entorno_actividad || data.entorno || ""),
 
-    responsable:          data.responsable,
-    telefono_responsable: data.telefono_responsable,
+    // 🔥 CORREGIDO: descripción
+    descripcion_solicitud:
+      data.descripcion_solicitud ||
+      data.descripcion ||
+      ""
   };
+
+  // 🔍 DEBUG (puedes quitar luego)
+  console.log("Payload enviado:", payload);
 
   await fetch(SCRIPT_URL, {
     method: "POST",
-    mode: "no-cors",
+    mode: "cors", //
     headers: {
-      "Content-Type": "text/plain;charset=utf-8",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
   });
