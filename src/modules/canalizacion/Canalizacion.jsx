@@ -360,7 +360,7 @@ export default function Canalizacion() {
   };
 
   const BtnRow = ({ onBack, onNext, submitLabel }) => (
-    <div className="flex gap-4 mt-8">
+    <div className="flex flex-col gap-4 mt-8 sm:flex-row">
       {onBack && (
         <button
           type="button"
@@ -392,7 +392,7 @@ export default function Canalizacion() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 flex justify-center px-6 py-12">
+    <div className="min-h-screen bg-gray-50 flex justify-center px-4 py-8 sm:px-6 sm:py-12">
       <div className="w-full max-w-4xl">
         <h1 className="text-2xl font-semibold text-gray-900 text-center mb-8">
           Registro de Solicitudes Ciudadanas
@@ -436,7 +436,7 @@ export default function Canalizacion() {
                   </Field>
                 </div>
 
-                <div className="grid grid-cols-2 gap-5 mb-5">
+                <div className="grid grid-cols-1 gap-5 mb-5 md:grid-cols-2">
                   <Field label="Tipo de documento" error={errors.tipo_documento}>
                     <select
                       value={form.tipo_documento}
@@ -500,7 +500,7 @@ export default function Canalizacion() {
                   </Field>
                 </div>
 
-                <div className="grid grid-cols-2 gap-5 mb-5">
+                <div className="grid grid-cols-1 gap-5 mb-5 md:grid-cols-2">
                   <Field label="Teléfono" error={errors.telefono}>
                     <input
                       value={form.telefono}
@@ -542,7 +542,7 @@ export default function Canalizacion() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-5 mb-5">
+                <div className="grid grid-cols-1 gap-5 mb-5 md:grid-cols-2">
                   <Field label="Nombre del beneficiario" optional>
                     <input
                       value={form.beneficiario_nombre}
@@ -574,7 +574,7 @@ export default function Canalizacion() {
                   </div>
                 )}
 
-                <div className="grid grid-cols-2 gap-8 mb-6">
+                <div className="grid grid-cols-1 gap-8 mb-6 md:grid-cols-2">
                   {/* Grupo poblacional - múltiple selección */}
                   <div>
                     <p className="text-sm font-medium text-gray-600 mb-3">
@@ -621,7 +621,7 @@ export default function Canalizacion() {
                   <p className="text-sm font-medium text-gray-600 mb-3">
                     Entorno de la actividad <span className="text-red-500">*</span>
                   </p>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                     {ENTORNOS.map((op) => (
                       <CheckItem
                         key={op}
@@ -637,7 +637,7 @@ export default function Canalizacion() {
                 </div>
 
                 {/* EPS */}
-                <div className="grid grid-cols-2 gap-5 mb-2">
+                <div className="grid grid-cols-1 gap-5 mb-2 md:grid-cols-2">
                   <div>
                     <Field label="EPS a la que está afiliado" optional>
                       <select
@@ -701,7 +701,7 @@ export default function Canalizacion() {
                   <p className="text-sm font-medium text-gray-600 mb-3">
                     Seleccione la dependencia o institución a la cual debe dirigirse la persona canalizada
                   </p>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                     {SECTORES.map((s) => (
                       <CheckItem
                         key={s}
@@ -739,7 +739,7 @@ export default function Canalizacion() {
                       <p className="text-sm font-semibold text-blue-700 mb-3">
                         Sector {sector}
                       </p>
-                      <div className="grid grid-cols-2 gap-2.5">
+                      <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
                         {SUBSECTORES[sector].map((sub) => (
                           <CheckItem
                             key={sub}
@@ -799,7 +799,7 @@ export default function Canalizacion() {
                 </div>
 
                 {/* Responsable con autocomplete */}
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                   <Field label="Responsable de diligenciamiento" error={errors.responsable}>
                     <AutocompleteResponsable
                       value={form.responsable}
