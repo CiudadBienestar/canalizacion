@@ -182,7 +182,7 @@ function AutocompleteResponsable({ value, telefono, onChange, onSelect, error })
               key={p.nombre}
               type="button"
               className={`w-full text-left px-4 py-3 text-base transition border-b border-gray-50 last:border-0 ${
-                i === highlighted ? "bg-blue-50 text-blue-800" : "text-gray-800 hover:bg-gray-50"
+                i === highlighted ? "bg-green-50 text-green-800" : "text-gray-800 hover:bg-gray-50"
               }`}
               onMouseDown={() => { onSelect(p); setOpen(false); }}
               onMouseEnter={() => setHighlighted(i)}
@@ -374,7 +374,7 @@ export default function Canalizacion() {
         <button
           type="button"
           onClick={onNext}
-          className="flex-1 py-3 text-base font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"
+          className="flex-1 py-3 text-base font-medium bg-blue-800 hover:bg-blue-900 text-white rounded-lg transition"
         >
           Siguiente →
         </button>
@@ -383,7 +383,7 @@ export default function Canalizacion() {
         <button
           type="submit"
           disabled={submitting}
-          className="flex-1 py-3 text-base font-medium bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white rounded-lg transition"
+          className="flex-1 py-3 text-base font-medium bg-blue-800 hover:bg-blue-900 disabled:opacity-60 text-white rounded-lg transition"
         >
           {submitting ? "Guardando…" : submitLabel}
         </button>
@@ -398,12 +398,21 @@ export default function Canalizacion() {
           Registro de Solicitudes Ciudadanas
         </h1>
 
+        {/* Logo */}
+        <div className="flex justify-center mb-8">
+          <img
+            src="https://ciudadbienestar.github.io/usuariosSICB/Logos_Acciones_Colectivas.png"
+            alt="Logo Ciudad Bienestar"
+            className="h-16 w-auto"
+          />
+        </div>
+
         {/* Step labels */}
         <div className="flex justify-between mb-2">
           {STEPS.map((label, i) => (
             <span
               key={label}
-              className={`text-sm ${step === i + 1 ? "text-blue-600 font-semibold" : "text-gray-400"}`}
+              className={`text-sm ${step === i + 1 ? "text-blue-800 font-semibold" : "text-gray-400"}`}
             >
               {label}
             </span>
@@ -413,7 +422,7 @@ export default function Canalizacion() {
         {/* Progress bar */}
         <div className="h-1.5 bg-gray-200 rounded-full mb-8">
           <div
-            className="h-1.5 bg-blue-600 rounded-full transition-all duration-300"
+            className="h-1.5 bg-blue-800 rounded-full transition-all duration-300"
             style={{ width: `${(step / 4) * 100}%` }}
           />
         </div>
@@ -530,14 +539,14 @@ export default function Canalizacion() {
                 <SectionTitle>II. Datos de la persona beneficiaria</SectionTitle>
 
                 {/* Checkbox para indicar si es el mismo solicitante */}
-                <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                   <CheckItem
                     label="✓ El beneficiario es la misma persona que el solicitante"
                     checked={mismoSolicitante}
                     onChange={(e) => handleMismoSolicitanteChange(e.target.checked)}
                     size="base"
                   />
-                  <p className="text-xs text-blue-600 mt-2 ml-8">
+                  <p className="text-xs text-green-600 mt-2 ml-8">
                     Marque esta opción si el beneficiario es la misma persona que diligenció los datos generales
                   </p>
                 </div>
@@ -734,9 +743,9 @@ export default function Canalizacion() {
                   .map((sector) => (
                     <div
                       key={sector}
-                      className="mb-5 p-4 bg-blue-50 border border-blue-100 rounded-lg"
+                      className="mb-5 p-4 bg-green-50 border border-green-100 rounded-lg"
                     >
-                      <p className="text-sm font-semibold text-blue-700 mb-3">
+                      <p className="text-sm font-semibold text-green-700 mb-3">
                         Sector {sector}
                       </p>
                       <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
@@ -888,7 +897,7 @@ export default function Canalizacion() {
                       fecha: "",
                     }));
                   }}
-                  className="px-8 py-3 text-base font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"
+                  className="px-8 py-3 text-base font-medium bg-blue-800 hover:bg-blue-900 text-white rounded-lg transition"
                 >
                   Nuevo registro
                 </button>
