@@ -182,7 +182,7 @@ function AutocompleteResponsable({ value, telefono, onChange, onSelect, error })
               key={p.nombre}
               type="button"
               className={`w-full text-left px-4 py-3 text-base transition border-b border-gray-50 last:border-0 ${
-                i === highlighted ? "bg-blue-50 text-blue-800" : "text-gray-800 hover:bg-gray-50"
+                i === highlighted ? "bg-green-50 text-green-800" : "text-gray-800 hover:bg-gray-50"
               }`}
               onMouseDown={() => { onSelect(p); setOpen(false); }}
               onMouseEnter={() => setHighlighted(i)}
@@ -221,7 +221,7 @@ export default function Canalizacion() {
   const [mismoSolicitante, setMismoSolicitante] = useState(false);
 
   const [form, setForm] = useState({
-    fecha: new Date().toISOString().split("T")[0],
+    fecha: "",
     tipo_documento: "",
     numero_documento: "",
     nombres: "",
@@ -360,7 +360,7 @@ export default function Canalizacion() {
   };
 
   const BtnRow = ({ onBack, onNext, submitLabel }) => (
-    <div className="flex gap-4 mt-8">
+    <div className="flex flex-col gap-4 mt-8 sm:flex-row">
       {onBack && (
         <button
           type="button"
@@ -374,7 +374,7 @@ export default function Canalizacion() {
         <button
           type="button"
           onClick={onNext}
-          className="flex-1 py-3 text-base font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"
+          className="flex-1 py-3 text-base font-medium bg-blue-800 hover:bg-blue-900 text-white rounded-lg transition"
         >
           Siguiente →
         </button>
@@ -383,7 +383,7 @@ export default function Canalizacion() {
         <button
           type="submit"
           disabled={submitting}
-          className="flex-1 py-3 text-base font-medium bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white rounded-lg transition"
+          className="flex-1 py-3 text-base font-medium bg-blue-800 hover:bg-blue-900 disabled:opacity-60 text-white rounded-lg transition"
         >
           {submitting ? "Guardando…" : submitLabel}
         </button>
@@ -392,18 +392,27 @@ export default function Canalizacion() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 flex justify-center px-6 py-12">
+    <div className="min-h-screen bg-gray-50 flex justify-center px-4 py-8 sm:px-6 sm:py-12">
       <div className="w-full max-w-4xl">
         <h1 className="text-2xl font-semibold text-gray-900 text-center mb-8">
           Registro de Solicitudes Ciudadanas
         </h1>
+
+        {/* Logo */}
+        <div className="flex justify-center mb-8">
+          <img
+            src="https://ciudadbienestar.github.io/usuariosSICB/Logos_Acciones_Colectivas.png"
+            alt="Logo Ciudad Bienestar"
+            className="h-16 w-auto"
+          />
+        </div>
 
         {/* Step labels */}
         <div className="flex justify-between mb-2">
           {STEPS.map((label, i) => (
             <span
               key={label}
-              className={`text-sm ${step === i + 1 ? "text-blue-600 font-semibold" : "text-gray-400"}`}
+              className={`text-sm ${step === i + 1 ? "text-blue-800 font-semibold" : "text-gray-400"}`}
             >
               {label}
             </span>
@@ -413,7 +422,7 @@ export default function Canalizacion() {
         {/* Progress bar */}
         <div className="h-1.5 bg-gray-200 rounded-full mb-8">
           <div
-            className="h-1.5 bg-blue-600 rounded-full transition-all duration-300"
+            className="h-1.5 bg-blue-800 rounded-full transition-all duration-300"
             style={{ width: `${(step / 4) * 100}%` }}
           />
         </div>
@@ -436,7 +445,7 @@ export default function Canalizacion() {
                   </Field>
                 </div>
 
-                <div className="grid grid-cols-2 gap-5 mb-5">
+                <div className="grid grid-cols-1 gap-5 mb-5 md:grid-cols-2">
                   <Field label="Tipo de documento" error={errors.tipo_documento}>
                     <select
                       value={form.tipo_documento}
@@ -500,7 +509,7 @@ export default function Canalizacion() {
                   </Field>
                 </div>
 
-                <div className="grid grid-cols-2 gap-5 mb-5">
+                <div className="grid grid-cols-1 gap-5 mb-5 md:grid-cols-2">
                   <Field label="Teléfono" error={errors.telefono}>
                     <input
                       value={form.telefono}
@@ -530,19 +539,19 @@ export default function Canalizacion() {
                 <SectionTitle>II. Datos de la persona beneficiaria</SectionTitle>
 
                 {/* Checkbox para indicar si es el mismo solicitante */}
-                <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                   <CheckItem
                     label="✓ El beneficiario es la misma persona que el solicitante"
                     checked={mismoSolicitante}
                     onChange={(e) => handleMismoSolicitanteChange(e.target.checked)}
                     size="base"
                   />
-                  <p className="text-xs text-blue-600 mt-2 ml-8">
+                  <p className="text-xs text-green-600 mt-2 ml-8">
                     Marque esta opción si el beneficiario es la misma persona que diligenció los datos generales
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-5 mb-5">
+                <div className="grid grid-cols-1 gap-5 mb-5 md:grid-cols-2">
                   <Field label="Nombre del beneficiario" optional>
                     <input
                       value={form.beneficiario_nombre}
@@ -574,7 +583,7 @@ export default function Canalizacion() {
                   </div>
                 )}
 
-                <div className="grid grid-cols-2 gap-8 mb-6">
+                <div className="grid grid-cols-1 gap-8 mb-6 md:grid-cols-2">
                   {/* Grupo poblacional - múltiple selección */}
                   <div>
                     <p className="text-sm font-medium text-gray-600 mb-3">
@@ -621,7 +630,7 @@ export default function Canalizacion() {
                   <p className="text-sm font-medium text-gray-600 mb-3">
                     Entorno de la actividad <span className="text-red-500">*</span>
                   </p>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                     {ENTORNOS.map((op) => (
                       <CheckItem
                         key={op}
@@ -637,7 +646,7 @@ export default function Canalizacion() {
                 </div>
 
                 {/* EPS */}
-                <div className="grid grid-cols-2 gap-5 mb-2">
+                <div className="grid grid-cols-1 gap-5 mb-2 md:grid-cols-2">
                   <div>
                     <Field label="EPS a la que está afiliado" optional>
                       <select
@@ -701,7 +710,7 @@ export default function Canalizacion() {
                   <p className="text-sm font-medium text-gray-600 mb-3">
                     Seleccione la dependencia o institución a la cual debe dirigirse la persona canalizada
                   </p>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                     {SECTORES.map((s) => (
                       <CheckItem
                         key={s}
@@ -734,12 +743,12 @@ export default function Canalizacion() {
                   .map((sector) => (
                     <div
                       key={sector}
-                      className="mb-5 p-4 bg-blue-50 border border-blue-100 rounded-lg"
+                      className="mb-5 p-4 bg-green-50 border border-green-100 rounded-lg"
                     >
-                      <p className="text-sm font-semibold text-blue-700 mb-3">
+                      <p className="text-sm font-semibold text-green-700 mb-3">
                         Sector {sector}
                       </p>
-                      <div className="grid grid-cols-2 gap-2.5">
+                      <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
                         {SUBSECTORES[sector].map((sub) => (
                           <CheckItem
                             key={sub}
@@ -799,7 +808,7 @@ export default function Canalizacion() {
                 </div>
 
                 {/* Responsable con autocomplete */}
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                   <Field label="Responsable de diligenciamiento" error={errors.responsable}>
                     <AutocompleteResponsable
                       value={form.responsable}
@@ -885,10 +894,10 @@ export default function Canalizacion() {
                       accion_otra: "",
                       responsable: "",
                       telefono_responsable: "",
-                      fecha: new Date().toISOString().split("T")[0],
+                      fecha: "",
                     }));
                   }}
-                  className="px-8 py-3 text-base font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"
+                  className="px-8 py-3 text-base font-medium bg-blue-800 hover:bg-blue-900 text-white rounded-lg transition"
                 >
                   Nuevo registro
                 </button>
