@@ -401,7 +401,7 @@ export default function Canalizacion() {
         {/* Logo */}
         <div className="flex justify-center mb-8">
           <img
-            src="https://ciudadbienestar.github.io/usuariosSICB/Logos_Acciones_Colectivas.png"
+            src="/assets/Logos_Acciones_Colectivas.png"
             alt="Logo Ciudad Bienestar"
             className="h-16 w-auto"
           />
